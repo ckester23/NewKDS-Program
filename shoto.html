@@ -11,12 +11,129 @@
     <title>Hello, world!</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <p id="p1">Hello World!</p>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        // JavaScript file for shotokai project
+        // string 'hello' character "h"
+        // false = 0, "", NaN, null, and undefined when used in bools
+
+        let stances = [ 
+            Seiza = "Seiza https://static.wixstatic.com/mp3/849542_4e9ef9c3a13b44afb8ec3a8e499d815d.mp3",
+            Hachiji_dachi = "Hachiji-dachi https://static.wixstatic.com/mp3/849542_f6ca1437d7a942ebaa01900e7783e007.mp3",
+            Kiba_dachi = "Kiba-dachi  https://static.wixstatic.com/mp3/849542_3df85ae05a464c3180a71c3be136681d.mp3",
+            Zenkutsu_dachi = "Zenkutsu  https://static.wixstatic.com/mp3/849542_1d213302d4154218927698cc5cfe94cd.mp3",
+            Kokutsu_dachi = "Kokutsu-dachi https://static.wixstatic.com/mp3/849542_e5f8e6433b4e482fa4befbf372c69539.mp3",
+            Fudo_dachi = "Fudo-dachi https://static.wixstatic.com/mp3/849542_cc9178564df146c3a236793aea8973dc.mp3"
+            ]
+
+        let hand_techniques = [ Oi_tsuki = "Oi_tsuki.mp3",
+            Mae_te_tsuki = "Mae_te_tsuki.mp3",
+            Gyaku_tsuki = "Gyaku_tsuki.mp3",
+            Uraken = "Uraken",
+            Empi = "Empi",
+            Shomen_uchi = "Shomen Uchi",
+            Yokomen_uchi = "Yokomen Uchi",
+            Tetsui = "Tetsui",
+            Morote_tsuki = "Morote Tsuki",
+            Yama_tsuki = "Yama Tsuki" ]
+
+        let kicks = [ Mae_geri = "Mae_geri.mp3",
+            Yoko_geri_kekomi = "Yoko_geri_kekomi.mp3",
+            Yoko_geri_keage = "Keage",
+            Fumikomi = "Fumi_komi.mp3",
+            Mawashi_geri = "Mawashi",
+            Mikazuki_geri = "Mikazuki",
+            Aori_geri = "Aori",
+            Nami_gaeshi = "Nami Gaeshi",
+            Hiza_tsuchi = "Hiza Tsuchi",
+            Nidan_geri = "Nidan" ]
+
+        let blocks = [ Gedan_barai = "Gedan_barai.mp3",
+            Teisho_barai = "teisho_barai.mp3",
+            Udi_uke = "Udi_uke.mp3",
+            Uchikomi = "Uchikomi.mp3",
+            Age_uke = "Age_uke.mp3",
+            Shuto_uke = "Shuto Uke",
+            Shuto_barai = "Shuto Barai",
+            Morote_uke = "Morote Uke" ]
+
+        let general = [ T_ShodanTate_tsuki = "Tate_tsuki",
+            Seiken = "Seiken",
+            Hiki_te = "Hiki_te.mp3",
+            Gedan = "Gedan",
+            Chudan = "Chudan",
+            Jodan = "Jodan",
+            Irimi = "Irimi.mp3" ]
+
+        let Taikyoku = [ T_Shodan = "Taikyoku_Shodan.mp3",
+            T_Nidan = "Taikyoku_Nidan.mp3",
+            T_Sandan = "Taikyoku_Sandan.mp3" ]
+
+        let Heian = [ H_Shodan = "Heian_Shodan.mp3",
+            H_Nidan = "Heian_Nidan.mp3",
+            H_Sandan = "Heian_Sandan.mp3" ]
+
+        let Tekki = [ Te_Shodan = "Tekki_Shodan.mp3" ]
+
+        let redStances = [Seiza, Kiba_dachi, Zenkutsu_dachi, Kokutsu_dachi, Fudo_dachi]
+        let redHands = [Oi_tsuki]
+        let redKicks = [Mae_geri]
+        let redBlocks = [Gedan_barai, Udi_uke]
+        let redGeneral = [Hiki_te]
+
+        let redKata = Taikyoku + H_Shodan
+
+        let redExercise = redStances + redHands + redKicks + redBlocks + redGeneral
+
+
+        let orangeStances = redStances
+        let orangeHands = [Gyaku_tsuki]
+        let orangeKicks = [Fumikomi, Yoko_geri_kekomi]
+        let orangeBlocks = [Teisho_barai, Age_uke, Uchikomi]
+        let orangeGeneral = [Irimi]
+
+        let orangeKata = [Heian, Te_Shodan]
+
+        let orangeExercise = orangeStances + orangeHands + orangeKicks + orangeBlocks + orangeGeneral
+
+
+        function printItem(item_str) {
+            let str_arr = item_str.split(" ");
+            let out_str = str_arr[0];
+            console.log(out_str);
+            //document.write(out_str);
+            document.getElementById("p1").innerHTML = out_str;
+        }
+
+        function playSound(item_str) {
+            url = item_str.split(" ")[1];
+            let a = new Audio(url);
+            a.play();
+        }
+
+        function getRandIndex(n) {
+            // Integrate later
+            Math.floor(Math.random() * n);
+        }
+
+        function doExercise(beltExercise) {
+            let n = beltExercise.length;
+
+            for (let i = 0; i < n; i++) {
+                let item = beltExercise[i];
+                setTimeout(() => {  
+                    printItem(item); 
+                    playSound(item);
+                }, (4000 * i));
+              
+            }
+        }
+        doExercise(redStances);
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

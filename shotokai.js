@@ -57,3 +57,52 @@ let Heian = [ H_Shodan = "Heian_Shodan.mp3",
 	H_Sandan = "Heian_Sandan.mp3" ]
 
 let Tekki = [ Te_Shodan = "Tekki_Shodan.mp3" ]
+
+let redStances = [Seiza, Kiba_dachi, Zenkutsu_dachi, Kokutsu_dachi, Fudo_dachi]
+let redHands = [Oi_tsuki]
+let redKicks = [Mae_geri]
+let redBlocks = [Gedan_barai, Udi_uke]
+let redGeneral  [Hiki_te]
+
+let redKata = Taikyoku + H_Shodan
+
+let redExercise = redStances + redHands + redKicks + redBlocks + redGeneral
+
+
+let orangeStances = redStances
+let orangeHands = [Gyaku_tsuki]
+let orangeKicks = [Fumikomi, Yoko_geri_kekomi]
+let orangeBlocks = [Teisho_barai, Age_uke, Uchikomi]
+let orangeGeneral = [Irimi]
+
+let orangeKata = [Heian, Te_Shodan]
+
+let orangeExercise = orangeStances + orangeHands + orangeKicks + orangeBlocks + orangeGeneral
+
+
+function printItem(mp3_str) {
+	let str_arr = mp3_str.split(".");
+	let out_str = str_arr[0]
+	console.log(out_str)
+}
+
+function playSound(url) {
+    let a = new Audio(url);
+    a.play();
+}
+
+function getRandIndex(n) {
+	// Integrate later
+	Math.floor(Math.random() * n);
+}
+
+function doExercise(beltExercise) {
+	let n = beltExercise.length;
+
+	for (let i = 0; i < n; i++) {
+		let item = beltExercise[i];
+		setTimeout(() => {  printItem(item); }, 2000);
+	}
+}
+
+doExercise(redStances);
