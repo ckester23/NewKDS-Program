@@ -11,19 +11,23 @@
     <title>Let's Train!</title>
   </head>
   <body>
-    <p id="p1"></p>
+    <p id="p1">Press The Button to Start!</p>
 
-    <button type="startButton">Let's Train!</button>
-      <script>
+    <img id="display image" src="https://static.wixstatic.com/media/849542_3d56dee2e72649a39ae655f407f583d3~mv2.jpg" style="height:300px">
+
+    <button id="startButton">Let's Train!</button>
+    
+  </body>
+        <script>
         // JavaScript file for shotokai project
 
         let stances = [ 
-            Seiza = "Seiza https://static.wixstatic.com/mp3/849542_4e9ef9c3a13b44afb8ec3a8e499d815d.mp3",
-            Hachiji_dachi = "Hachiji-dachi https://static.wixstatic.com/mp3/849542_f6ca1437d7a942ebaa01900e7783e007.mp3",
-            Kiba_dachi = "Kiba-dachi https://static.wixstatic.com/mp3/849542_3df85ae05a464c3180a71c3be136681d.mp3",
-            Zenkutsu_dachi = "Zenkutsu https://static.wixstatic.com/mp3/849542_1d213302d4154218927698cc5cfe94cd.mp3",
-            Kokutsu_dachi = "Kokutsu-dachi https://static.wixstatic.com/mp3/849542_e5f8e6433b4e482fa4befbf372c69539.mp3",
-            Fudo_dachi = "Fudo-dachi https://static.wixstatic.com/mp3/849542_cc9178564df146c3a236793aea8973dc.mp3"
+            Seiza = "Seiza https://static.wixstatic.com/mp3/849542_4e9ef9c3a13b44afb8ec3a8e499d815d.mp3 https://static.wixstatic.com/media/849542_a43e129fcd274f70860976fd8d87bd08~mv2.jpg",
+            Hachiji_dachi = "Hachiji-dachi https://static.wixstatic.com/mp3/849542_f6ca1437d7a942ebaa01900e7783e007.mp3 https://static.wixstatic.com/media/849542_3d56dee2e72649a39ae655f407f583d3~mv2.jpg",
+            Kiba_dachi = "Kiba-dachi https://static.wixstatic.com/mp3/849542_3df85ae05a464c3180a71c3be136681d.mp3 https://static.wixstatic.com/media/849542_375f87aa486f4cb497655ef43f509f45~mv2.jpg",
+            Zenkutsu_dachi = "Zenkutsu https://static.wixstatic.com/mp3/849542_1d213302d4154218927698cc5cfe94cd.mp3 https://static.wixstatic.com/media/849542_6684baacef4d4d3b910ff163e97d0c56~mv2.jpg",
+            Kokutsu_dachi = "Kokutsu-dachi https://static.wixstatic.com/mp3/849542_e5f8e6433b4e482fa4befbf372c69539.mp3 https://static.wixstatic.com/media/849542_0ee99bf9e9dd4b3fb8621a8ac538674b~mv2.jpg",
+            Fudo_dachi = "Fudo-dachi https://static.wixstatic.com/mp3/849542_cc9178564df146c3a236793aea8973dc.mp3 https://static.wixstatic.com/media/849542_ac80b44649f84c44bc8e5c38b878e6ee~mv2.jpg"
             ]
 
         let hand_techniques = [ Oi_tsuki = "Oi_tsuki.mp3",
@@ -113,6 +117,19 @@
             let promise = a.play();
         }
 
+        function playMiscSounds(url_str){
+            let a = new Audio(url_str);
+            a.play();
+        }
+
+        function displayImage(item_str) {
+            let split_url = item_str.split(" ");
+            let url = split_url[2];
+
+            document.getElementById("display image").src = url;
+            // do stuff with it
+        }
+
         function getRandIndex(n) {
             // Integrate later
             Math.floor(Math.random() * n);
@@ -133,7 +150,11 @@
             }
 
             else {
-                doExercise(beltExercise);
+                // play beginning exercise
+                document.getElementById("p1").innerHTML = "Beginning Exercise";
+                playMiscSounds("https://static.wixstatic.com/mp3/849542_4792bb57a76f468faf8b3ac7dd08b684.mp3");
+                setTimeout(() => {doExercise(beltExercise); }, 6000);
+                
             }
         }
 
@@ -145,16 +166,20 @@
                 setTimeout(() => {  
                     printItem(item); 
                     playSound(item);
+                    displayImage(item);
                 }, (4000 * i));
+
+                if (i == n - 1){
+                    setTimeout(() => { document.getElementById("p1").innerHTML = "Exercise Complete"; playMiscSounds("https://static.wixstatic.com/mp3/849542_87965a49adbc4f38a275b20271b06637.mp3"); document.getElementById("display image").src = "https://static.wixstatic.com/media/849542_1fb2d575cb804ff49a21a2a075c0b801~mv2.png";}, 4000 * n); 
+                }
             }
         }
-        /*window.onload = function() { 
-        // Currently Debugging this section
-        document.getElementById("startButton").onclick = function(){getBeltFromUser()}
-    };*/
-        setTimeout(() => {getBeltFromUser();}, "2000");
+        
+    window.onload = function() {        
+        document.getElementById("startButton").onclick = function(){getBeltFromUser(); }
+    };
+    
 
     </script>
-  </body>
 
 </html>
